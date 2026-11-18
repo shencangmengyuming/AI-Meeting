@@ -1,0 +1,7 @@
+interface:
+  display_name: "Python 鉴权用户域"
+  short_description: "维护身份、权限、归属和用户隔离契约。"
+  default_prompt: "使用 $xunzhi-auth-user 处理 Python 鉴权或用户归属需求。"
+
+policy:
+  allow_implicit_invocation: true

@@ -8,8 +8,10 @@
 - MySQL, MongoDB and Redis adapters are exercised against real containers.
 - Configuration contains no working third-party credentials or production secrets.
 - Docker health and shutdown behavior are verified before module migration.
-- Skill anchor validation is unit-tested in this repository and scans the Java
-  Skill source locally when both repositories are checked out as siblings.
+- The repository owns nine Python Skills under `skills/`; Java Skills are not
+  used as Python implementation truth.
+- Skill validation requires the complete local catalog, rejects paths outside
+  this repository, and verifies production routes from `app/**/*.py` only.
 
 ## Rollback
 

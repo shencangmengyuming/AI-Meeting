@@ -1,0 +1,7 @@
+interface:
+  display_name: "Python 媒体域"
+  short_description: "维护 ASR、媒体 WebSocket、通知和 TTS。"
+  default_prompt: "使用 $xunzhi-media-domain 处理 Python 实时媒体需求。"
+
+policy:
+  allow_implicit_invocation: true

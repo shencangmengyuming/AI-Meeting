@@ -1,0 +1,7 @@
+interface:
+  display_name: "Python 面试域"
+  short_description: "维护面试流程、答题、评分、追问与恢复。"
+  default_prompt: "使用 $xunzhi-interview-domain 处理 Python 面试主链路需求。"
+
+policy:
+  allow_implicit_invocation: true

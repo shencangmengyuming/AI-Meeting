@@ -1,0 +1,7 @@
+interface:
+  display_name: "Python Agent 域"
+  short_description: "维护通用 Agent 会话、消息、文件和流式响应。"
+  default_prompt: "使用 $xunzhi-agent-domain 处理 Python 通用 Agent 需求。"
+
+policy:
+  allow_implicit_invocation: true

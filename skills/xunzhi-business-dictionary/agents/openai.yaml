@@ -1,0 +1,7 @@
+interface:
+  display_name: "Python 业务词典"
+  short_description: "统一跨域对象、标识和真相源语义。"
+  default_prompt: "使用 $xunzhi-business-dictionary 澄清这个业务对象的语义和真相源。"
+
+policy:
+  allow_implicit_invocation: true

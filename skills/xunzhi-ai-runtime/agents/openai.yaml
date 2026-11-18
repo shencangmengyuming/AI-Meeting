@@ -1,0 +1,7 @@
+interface:
+  display_name: "Python AI 运行时"
+  short_description: "维护 AI 调用资源、并发与可靠性保护。"
+  default_prompt: "使用 $xunzhi-ai-runtime 处理 Python AI 运行时需求。"
+
+policy:
+  allow_implicit_invocation: true

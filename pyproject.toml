@@ -44,7 +44,7 @@ target-version = "py312"
 select = ["E", "F", "I"]
 
 [tool.pyright]
-include = ["app", "tests"]
+include = ["app", "tests", "tools"]
 venvPath = "."
 venv = ".venv"
 pythonVersion = "3.12"

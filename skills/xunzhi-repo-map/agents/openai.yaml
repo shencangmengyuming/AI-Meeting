@@ -1,0 +1,7 @@
+interface:
+  display_name: "Python 仓库路由"
+  short_description: "定位 Python 后端模块、入口和实施状态。"
+  default_prompt: "使用 $xunzhi-repo-map 判断这个需求属于哪个 Python 模块。"
+
+policy:
+  allow_implicit_invocation: true

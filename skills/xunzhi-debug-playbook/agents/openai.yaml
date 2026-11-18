@@ -1,0 +1,7 @@
+interface:
+  display_name: "Python 排障剧本"
+  short_description: "定位请求、资源、状态与外部依赖故障。"
+  default_prompt: "使用 $xunzhi-debug-playbook 诊断这个 Python 后端问题。"
+
+policy:
+  allow_implicit_invocation: true

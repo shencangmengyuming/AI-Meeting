@@ -1,0 +1,7 @@
+interface:
+  display_name: "Python 变更剧本"
+  short_description: "检查跨域改动的契约、数据、回滚和知识同步。"
+  default_prompt: "使用 $xunzhi-change-playbook 规划并检查这个跨模块变更。"
+
+policy:
+  allow_implicit_invocation: true
