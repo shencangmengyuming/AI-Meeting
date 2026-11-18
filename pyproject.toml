@@ -12,6 +12,7 @@ dependencies = [
     "pydantic-settings>=2.6,<3",
     "SQLAlchemy[asyncio]>=2.0,<3",
     "asyncmy>=0.2,<1",
+    "cryptography>=43,<46",
     "pymongo>=4.13,<5",
     "redis>=5,<8",
 ]
@@ -22,6 +23,7 @@ dev = [
     "pytest-anyio>=0.0.0",
     "ruff>=0.9,<1",
     "pyright>=1.1,<2",
+    "testcontainers>=4.9,<5",
 ]
 
 [tool.setuptools.packages.find]
@@ -30,6 +32,7 @@ include = ["app*"]
 [tool.pytest.ini_options]
 addopts = "-ra"
 testpaths = ["tests"]
+markers = ["integration: requires Docker containers"]
 
 [tool.ruff]
 line-length = 88
