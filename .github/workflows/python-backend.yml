@@ -18,3 +18,4 @@ jobs:
       - run: python -m ruff check .
       - run: python -m pyright
       - run: python -m pytest -v
+      - run: python -m pytest tests/tools/test_check_skill_anchors.py -v
