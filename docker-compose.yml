@@ -1,0 +1,55 @@
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: ai_meeting
+      MYSQL_USER: ai_meeting
+      MYSQL_PASSWORD: local_only
+      MYSQL_ROOT_PASSWORD: local_root_only
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  mongo:
+    image: mongo:7
+    healthcheck:
+      test: ["CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ping:1}).ok"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  redis:
+    image: redis:7
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+
+  python-backend:
+    build: .
+    environment:
+      AI_MEETING_DATABASE_URL: mysql+asyncmy://ai_meeting:local_only@mysql/ai_meeting?charset=utf8mb4
+      AI_MEETING_MONGO_URL: mongodb://mongo:27017
+      AI_MEETING_REDIS_URL: redis://redis:6379/0
+    depends_on:
+      mysql:
+        condition: service_healthy
+      mongo:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "8000:8000"
+
+  python-backend-smoke:
+    image: curlimages/curl:8.12.1
+    command:
+      - sh
+      - -ec
+      - |
+        until curl --fail --silent http://python-backend:8000/actuator/health | grep '"status":"UP"'; do sleep 1; done
+    depends_on:
+      - python-backend

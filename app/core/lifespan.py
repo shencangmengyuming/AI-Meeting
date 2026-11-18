@@ -45,7 +45,7 @@ def build_resources(settings: Settings) -> AppResources:
 
 async def close_resources(resources: AppResources) -> None:
     await resources.engine.dispose()
-    resources.mongo_client.close()
+    await resources.mongo_client.close()
     await resources.redis.aclose()
     await resources.http.aclose()
 

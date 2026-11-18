@@ -16,6 +16,7 @@ dependencies = [
     "cryptography>=43,<46",
     "pymongo>=4.13,<5",
     "redis>=5,<8",
+    "uvicorn[standard]>=0.34,<1",
 ]
 
 [project.optional-dependencies]

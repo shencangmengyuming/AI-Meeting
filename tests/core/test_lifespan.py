@@ -20,7 +20,7 @@ class FakeEngine:
 class FakeMongo:
     closed: int = 0
 
-    def close(self) -> None:
+    async def close(self) -> None:
         self.closed += 1
 
 
