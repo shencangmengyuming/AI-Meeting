@@ -1,0 +1,5 @@
+- method: GET
+  path: /actuator/health
+- method: POST
+  path: /api/xunzhi/v1/users/login
+  json: {}
