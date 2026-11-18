@@ -1,0 +1,16 @@
+- name: login
+  method: POST
+  path: /api/xunzhi/v1/users/login
+  json:
+    username: hewei2323
+    password: "<from-environment>"
+- name: check-login
+  method: GET
+  path: /api/xunzhi/v1/users/check-login
+  headers:
+    Authorization: "Bearer <from-login>"
+- name: logout
+  method: POST
+  path: /api/xunzhi/v1/users/logout
+  headers:
+    Authorization: "Bearer <from-login>"

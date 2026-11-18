@@ -5,8 +5,8 @@ description: Use when implementing or reviewing Python identity, login, current-
 
 # Auth And User Domain
 
-This domain is not implemented yet. Read `references/migration-contract.md`
-before creating its package or routes.
+Sa-Token compatibility is implemented; user routes and permission dependencies
+remain planned. Read `references/migration-contract.md` before extending it.
 
 ## Order
 
@@ -21,3 +21,12 @@ before creating its package or routes.
 - Authenticate before loading user-owned resources.
 - Keep token parsing outside domain services.
 - Enforce both token identity and path/session ownership for WebSockets.
+
+## Current Entry Points
+
+- repo-path: `app/auth_user/domain/session.py`
+- repo-path: `app/auth_user/infrastructure/java_satoken.py`
+- repo-path: `app/auth_user/infrastructure/user_identity.py`
+- repo-path: `tests/contracts/fixtures/auth/java_satoken.json`
+- repo-path: `tests/auth/test_java_satoken_adapter.py`
+- repo-path: `tests/auth/test_user_identity_lookup.py`
