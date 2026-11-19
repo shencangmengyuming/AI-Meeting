@@ -7,6 +7,8 @@ description: Use when implementing or reviewing Python AI provider execution, li
 
 Read `references/resource-lifecycle.md` for current Foundation behavior and
 `references/reliability-contract.md` before adding concurrency controls.
+Interview heavy-workflow wiring and report finalization are reviewed in
+`docs/reviews/python-interview-review.md`.
 
 ## Constraints
 

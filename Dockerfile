@@ -7,8 +7,12 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 WORKDIR /app
 
 COPY pyproject.toml README.md ./
+RUN mkdir app && touch app/__init__.py \
+    && python -m pip install --upgrade pip \
+    && python -m pip install . \
+    && rm -rf app
+
 COPY app ./app
-RUN python -m pip install --upgrade pip && python -m pip install .
 
 RUN useradd --create-home --uid 10001 appuser
 USER appuser

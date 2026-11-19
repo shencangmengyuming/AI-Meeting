@@ -1,8 +1,8 @@
-# Java Contract Fixtures
+# Baseline Contract Fixtures
 
-Fixtures are JSON files containing a version, endpoint, request metadata and a
-base64-encoded raw HTTP response body. Credentials, cookies, passwords, files
-and signed URLs are redacted before persistence.
+Fixtures are optional snapshots of the reviewed baseline API. They inform
+Python behavior but are not runtime dependencies. Credentials, cookies,
+passwords, files and signed URLs are redacted before persistence.
 
 Record fixtures with:
 

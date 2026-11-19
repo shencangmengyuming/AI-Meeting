@@ -1,0 +1,11 @@
+chains:
+  default_followup_chain:
+    version: v1.0.0
+    nodes:
+      - load_context
+      - completed_state_guard
+      - followup_limit_guard
+      - ai_suggestion_judge
+      - low_score_judge
+      - missing_points_judge
+      - finalize_decision

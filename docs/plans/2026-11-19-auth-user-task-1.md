@@ -1,35 +1,31 @@
-# Auth/User Task 1: Java Sa-Token Compatibility
+# Auth/User Task 1: Python-Native Sessions
 
 ## Goal
 
-Accept Java-issued Sa-Token sessions and produce Python-issued sessions that
-the Java service can read during dual-stack migration.
+Implement the Python authentication/session boundary without depending on the
+Java service or Java Sa-Token Redis serialization.
 
 ## Repository Paths
 
 - Contract scenario: `tests/contracts/scenarios/auth.yaml`
-- Captured contract: `tests/contracts/fixtures/auth/java_satoken.json`
-- Contract test: `tests/contracts/test_java_satoken_fixture.py`
-- Adapter tests: `tests/auth/test_java_satoken_adapter.py`
+- Adapter tests: `tests/auth/test_redis_session_adapter.py`
 - Domain contract: `app/auth_user/domain/session.py`
-- Redis adapter: `app/auth_user/infrastructure/java_satoken.py`
+- Redis adapter: `app/auth_user/infrastructure/redis_session.py`
 - Identity lookup: `app/auth_user/infrastructure/user_identity.py`
 
 ## Execution
 
-1. Capture login, shared-token, check-login, TTL, Redis encoding, and logout
-   behavior from the running Java baseline.
-2. Store a normalized fixture with credentials and token values redacted.
-3. Write failing tests for valid, expired, missing, shared, and logout cases.
-4. Implement the minimum Redis adapter against the captured contract.
-5. Resolve user IDs from `t_user` with the Java-compatible 30-minute Redis
-   cache and derive the admin role from `admin_permission`.
-6. Run focused tests, full quality gates, Skill validation, and update the Auth
+1. Define Python-owned token/session keys and expiration semantics.
+2. Write contract tests for valid, expired, missing, shared, concurrent, and
+   logout cases.
+3. Implement atomic login/logout Redis scripts and token resolution.
+4. Resolve user IDs from `t_user` with a 30-minute Redis accelerator and derive
+   the admin role from `admin_permission`.
+5. Run focused tests, full quality gates, Skill validation, and update the Auth
    Skill with verified keys and ownership boundaries.
 
 ## Boundary
 
-`Authorization:login:*` is the authentication truth. The legacy
-`xunzhi-agent:login:*` hash is recorded for compatibility but remains outside
-`AuthSessionPort`; user login/application services own it until the login route
-is migrated.
+`ai-meeting:auth:*` is the authentication truth. Legacy Java Sa-Token and
+`xunzhi-agent:login:*` records are outside `AuthSessionPort` and are not read by
+the Python backend.

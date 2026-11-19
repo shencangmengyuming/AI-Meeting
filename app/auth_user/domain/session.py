@@ -10,6 +10,12 @@ class AuthIdentity:
 
 
 @dataclass(frozen=True)
+class AuthCredentials:
+    identity: AuthIdentity
+    password: str
+
+
+@dataclass(frozen=True)
 class AuthPrincipal:
     user_id: int
     username: str
@@ -25,6 +31,12 @@ class AuthToken:
 
 class AuthIdentityLookup(Protocol):
     async def find_by_username(self, username: str) -> AuthIdentity | None: ...
+
+
+class AuthCredentialsLookup(Protocol):
+    async def find_credentials(self, username: str) -> AuthCredentials | None: ...
+
+    async def upgrade_password(self, username: str, password_hash: str) -> None: ...
 
 
 class AuthSessionPort(Protocol):

@@ -5,7 +5,7 @@ from redis.asyncio import Redis
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
-from app.auth_user.domain.session import AuthIdentity
+from app.auth_user.domain.session import AuthCredentials, AuthIdentity
 
 
 class MySqlAuthIdentityLookup:
@@ -67,6 +67,37 @@ class MySqlAuthIdentityLookup:
             username=username,
             roles=frozenset(roles),
         )
+
+    async def find_credentials(self, username: str) -> AuthCredentials | None:
+        if not username:
+            return None
+        async with self.session_factory() as session:
+            row = (
+                await session.execute(
+                    text(
+                        "SELECT id, username, password FROM t_user "
+                        "WHERE username = :username AND del_flag = 0 LIMIT 1"
+                    ),
+                    {"username": username},
+                )
+            ).mappings().first()
+        if row is None or row["password"] is None:
+            return None
+        identity = await self.find_by_username(username)
+        if identity is None:
+            return None
+        return AuthCredentials(identity=identity, password=str(row["password"]))
+
+    async def upgrade_password(self, username: str, password_hash: str) -> None:
+        async with self.session_factory() as session:
+            await session.execute(
+                text(
+                    "UPDATE t_user SET password = :password "
+                    "WHERE username = :username AND del_flag = 0"
+                ),
+                {"username": username, "password": password_hash},
+            )
+            await session.commit()
 
 
 def _parse_user_id(value: Any) -> int | None:

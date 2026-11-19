@@ -34,6 +34,12 @@ services:
       AI_MEETING_DATABASE_URL: mysql+asyncmy://ai_meeting:local_only@mysql/ai_meeting?charset=utf8mb4
       AI_MEETING_MONGO_URL: mongodb://mongo:27017
       AI_MEETING_REDIS_URL: redis://redis:6379/0
+      AI_MEETING_XUNFEI_TTS_APP_ID: ${AI_MEETING_XUNFEI_TTS_APP_ID:-}
+      AI_MEETING_XUNFEI_TTS_API_KEY: ${AI_MEETING_XUNFEI_TTS_API_KEY:-}
+      AI_MEETING_XUNFEI_TTS_API_SECRET: ${AI_MEETING_XUNFEI_TTS_API_SECRET:-}
+      AI_MEETING_XUNFEI_ASR_APP_ID: ${AI_MEETING_XUNFEI_ASR_APP_ID:-}
+      AI_MEETING_XUNFEI_ASR_API_KEY: ${AI_MEETING_XUNFEI_ASR_API_KEY:-}
+      AI_MEETING_XUNFEI_ASR_API_SECRET: ${AI_MEETING_XUNFEI_ASR_API_SECRET:-}
     depends_on:
       mysql:
         condition: service_healthy

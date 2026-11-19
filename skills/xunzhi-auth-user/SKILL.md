@@ -5,8 +5,11 @@ description: Use when implementing or reviewing Python identity, login, current-
 
 # Auth And User Domain
 
-Sa-Token compatibility is implemented; user routes and permission dependencies
-remain planned. Read `references/migration-contract.md` before extending it.
+Python-native Redis sessions, permission dependencies and the user management
+surface are implemented. Read `references/session-contract.md` before changing
+authentication or ownership behavior.
+Registration Bloom rebuild and the registration race fallback are documented in
+`docs/reviews/python-auth-user-review.md`.
 
 ## Order
 
@@ -25,8 +28,9 @@ remain planned. Read `references/migration-contract.md` before extending it.
 ## Current Entry Points
 
 - repo-path: `app/auth_user/domain/session.py`
-- repo-path: `app/auth_user/infrastructure/java_satoken.py`
+- repo-path: `app/auth_user/infrastructure/redis_session.py`
 - repo-path: `app/auth_user/infrastructure/user_identity.py`
-- repo-path: `tests/contracts/fixtures/auth/java_satoken.json`
-- repo-path: `tests/auth/test_java_satoken_adapter.py`
+- repo-path: `app/auth_user/infrastructure/user_repository.py`
+- repo-path: `app/auth_user/api/user_router.py`
+- repo-path: `tests/auth/test_redis_session_adapter.py`
 - repo-path: `tests/auth/test_user_identity_lookup.py`

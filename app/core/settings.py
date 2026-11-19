@@ -18,6 +18,12 @@ class Settings(BaseSettings):
     http_read_timeout: float = 30.0
     http_write_timeout: float = 30.0
     http_pool_timeout: float = 5.0
+    xunfei_tts_app_id: str | None = None
+    xunfei_tts_api_key: str | None = None
+    xunfei_tts_api_secret: str | None = None
+    xunfei_asr_app_id: str | None = None
+    xunfei_asr_api_key: str | None = None
+    xunfei_asr_api_secret: str | None = None
 
 
 @lru_cache(maxsize=1)
